@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function listSponsors() {
-    return axios.get('http://localhost:8080/sponsor/list')
+    return axios.get(`${window.Configs.BASE_URL}/sponsor/list`)
         .then(response => response.data)
         .catch(error => {
             console.log(error)
@@ -9,7 +9,7 @@ export function listSponsors() {
 }
 
 export function createSponsor(sponsor) {
-    axios.post('http://localhost:8080/sponsor/create', JSON.stringify(sponsor))
+    axios.post(`${window.Configs.BASE_URL}/sponsor/create`, JSON.stringify(sponsor))
         .then(response => {
             console.log(response)
             window.location.href = `/sponsors/${response.data.id}`
@@ -26,7 +26,7 @@ export function createSponsor(sponsor) {
 export function findSponsor(id) {
     console.log(`findSponsor ${id}`);
     return axios.get(
-        'http://localhost:8080/sponsor/findById',
+        `${window.Configs.BASE_URL}/sponsor/findById`,
         {
             params: {
                 id: id

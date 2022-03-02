@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export function listOrganizations() {
-    return axios.get('http://localhost:8080/organization/list')
+    return axios.get(`${window.Configs.BASE_URL}/organization/list`)
         .then(res => res.data)
         .catch(error => {
             console.log(error);
@@ -12,7 +12,7 @@ export function listOrganizations() {
 export function findOrganization(id) {
     console.log(`findOrganization ${id}`);
     return axios.get(
-        'http://localhost:8080/organization/findById',
+        `${window.Configs.BASE_URL}/organization/findById`,
         {
             params: {
                 id: id
@@ -26,7 +26,7 @@ export function findOrganization(id) {
 }
 
 export function createOrganization(org) {
-    axios.post('http://localhost:8080/organization/create', JSON.stringify(org))
+    axios.post(`${window.Configs.BASE_URL}/organization/create`, JSON.stringify(org))
         .then(response => {
             console.log(response)
             window.location.href = `/organizations/${response.data.id}`

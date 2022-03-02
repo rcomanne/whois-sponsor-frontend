@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function listSports() {
     console.log('fetchSports');
-    return axios.get('http://localhost:8080/sport/list')
+    return axios.get(`${window.Configs.BASE_URL}/sport/list`)
         .then(response => response.data)
         .catch(error => {
             console.log(error)
@@ -10,7 +10,7 @@ export function listSports() {
 }
 
 export function createSport(sport) {
-    axios.post('http://localhost:8080/sport/create', JSON.stringify(sport))
+    axios.post(`${window.Configs.BASE_URL}/sport/create`, JSON.stringify(sport))
         .then(response => {
             console.log(response)
             window.location.href = `/sports/${response.data.id}`
@@ -27,7 +27,7 @@ export function createSport(sport) {
 export function findSport(id) {
     console.log(`findSport ${id}`);
     return axios.get(
-        'http://localhost:8080/sport/findById',
+        `${window.Configs.BASE_URL}/sport/findById`,
         {
             params: {
                 id: id
